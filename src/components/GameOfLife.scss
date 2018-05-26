@@ -1,0 +1,82 @@
+.header {
+  background-color: $black;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 80px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+
+.header__title {
+  font: $xlarge $basic;
+  color: $gray;
+  background-color: $black;
+  font-weight: 800;
+  text-align: center;
+  padding: 10px;
+  max-width: 250px;
+
+  border-top: solid 4px $gray;
+  border-bottom: solid 4px $gray;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  position: relative;
+}
+
+.main::after {
+  content: "";
+  background-image: url(../img/DNA.jpg);
+  background-position: center;
+  background-size: 100%;
+
+  opacity: 0.8;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.main__trapezoid {
+  border-bottom: 50px solid $black;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  height: 0;
+  width: 100px;
+
+  display: flex;
+}
+
+.main__title {
+  font: $medium $basic;
+  color: $gray;
+  text-align: center;
+}
+
+.footer {
+  background-color: $black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 30px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.footer__txt {
+  font: $small $basic;
+  color: $gray;
+  text-align: center;
+}
+
+.color-red {
+  color: red;
+}
