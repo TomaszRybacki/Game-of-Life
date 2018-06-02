@@ -1,0 +1,21 @@
+.GameMenu {
+  position: absolute;
+  left: -200px;
+  top: 0;
+  width: 200px;
+  height: 100%;
+
+  background-color: $black;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  display: flex;
+  justify-content: space-around;
+
+  transition: all 0.3s ease;
+}
+
+.GameMenu--on {
+  transform: translateX(200px);
+}

@@ -1,11 +1,27 @@
 .GameControls {
-  display: flex;
-  flex-direction: column;
+}
 
-  position: absolute;
-  left: 0;
-  top: 30%;
-  z-index: 99;
+.GameControls__label {
+  font: $medium $basic;
+  color: $gray;
+  font-weight: 800;
+  text-align: center;
+  padding: 10px;
+  text-transform: uppercase;
+
+
+  &::after {
+    content: '';
+    width: 100px;
+    height: 2px;
+    margin: 5px auto;
+    display: block;
+    background-color: $gray;
+  }
+}
+
+.GameControls__buttons {
+  display: flex;
 }
 
 .GameControls__button {
@@ -13,17 +29,23 @@
   background: $gray;
   border: none;
   border-radius: 50%;
-  display: flex;
-  width: 54px;
-  height: 54px;
+  width: 36px;
+  height: 36px;
   padding: 0;
   margin: 10px;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+
   &:hover, &:focus {
-    background: $orange;
+    transform: scale(1.2);
   }
 }
 
 .GameControls__icon {
-
+  fill: $blue;
+  width: 36px;
+  height: 36px;
 }

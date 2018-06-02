@@ -1,0 +1,72 @@
+.GameSettings{
+
+}
+
+.GameSettings__label {
+  font: $medium $basic;
+  color: $gray;
+  font-weight: 800;
+  text-align: center;
+  padding: 10px;
+  text-transform: uppercase;
+
+  &::after {
+    content: '';
+    width: 100px;
+    height: 2px;
+    margin: 5px auto;
+    display: block;
+    background-color: $gray;
+  }
+}
+
+.GameSettings__buttons {
+  display: flex;
+}
+
+.GameSettings__button {
+  cursor: pointer;
+  background: $gray;
+  border: none;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  margin: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+
+  &:hover, &:focus {
+    transform: scale(1.2);
+  }
+}
+
+.GameSettings__button--round {
+  border-radius: 50%;
+}
+
+.GameSettings__icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.GameSettings__icon--red {
+  fill: $pad-red;
+}
+
+.GameSettings__icon--orange {
+  fill: $pad-orange;
+}
+
+.GameSettings__icon--blue {
+  fill: $pad-blue;
+}
+
+.GameSettings__icon--green {
+  fill: $pad-green;
+}
