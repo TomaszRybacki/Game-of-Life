@@ -1,4 +1,5 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 function GameMenu(props) {
   return (
@@ -7,5 +8,9 @@ function GameMenu(props) {
     </div>
   );
 }
+
+GameMenu.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.element).isRequired
+};
 
 export default GameMenu;

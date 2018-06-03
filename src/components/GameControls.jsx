@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import PlayIcon from './../iconComponents/PlayIcon.jsx';
 import PauseIcon from './../iconComponents/PauseIcon.jsx';

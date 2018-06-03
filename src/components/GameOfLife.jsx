@@ -10,8 +10,13 @@ import HamburgerMenu from './HamburgerMenu.jsx';
 class GameOfLife extends React.Component {
   constructor(props) {
     super(props);
+    this.boardRows = 20;
+    this.boardColumns = 40;
+    this.gameSpeed = 100;
+
     this.state = {
-      test: false
+      generation: 0,
+      board: Array(this.boardRows).fill(Array(this.boardColumns).fill(false))
     };
   }
 
@@ -31,10 +36,10 @@ class GameOfLife extends React.Component {
           </GameMenu>
 
           <div className="main__trapezoid">
-            <h2 className="main__title">generation<br /> 0 </h2>
+            <h2 className="main__title">generation<br /> {this.state.generation} </h2>
           </div>
 
-          <GameBoard />
+          <GameBoard boardRows={this.boardRows} boardColumns={this.boardColumns} board={this.state.board} />
         </main>
 
         <footer className="footer">

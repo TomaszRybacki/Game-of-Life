@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import NormalSpeedIcon from './../iconComponents/NormalSpeedIcon.jsx';
 import FastSpeedIcon from './../iconComponents/FastSpeedIcon.jsx';
