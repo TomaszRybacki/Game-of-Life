@@ -20,6 +20,14 @@ class GameOfLife extends React.Component {
     };
   }
 
+  handleCellClick = (row, column) => {
+    const boardCopy = copyArray(this.state.board);
+    boardCopy[row][column] = !boardCopy[row][column];
+    this.setState({
+      board: boardCopy
+    });
+  }
+
   render() {
     return (
       <Fragment>
@@ -39,7 +47,7 @@ class GameOfLife extends React.Component {
             <h2 className="main__title">generation<br /> {this.state.generation} </h2>
           </div>
 
-          <GameBoard boardRows={this.boardRows} boardColumns={this.boardColumns} board={this.state.board} />
+          <GameBoard boardRows={this.boardRows} boardColumns={this.boardColumns} board={this.state.board} cellClick={this.handleCellClick} />
         </main>
 
         <footer className="footer">
@@ -48,6 +56,10 @@ class GameOfLife extends React.Component {
       </Fragment>
     );
   }
+}
+
+function copyArray(array) {
+  return array.map(innerArray => innerArray.slice());
 }
 
 export default GameOfLife;
