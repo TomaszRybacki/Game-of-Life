@@ -7,16 +7,27 @@ import GameMenu from './GameMenu.jsx';
 import HamburgerMenu from './HamburgerMenu.jsx';
 
 
+function copyArray(array) {
+  return array.map(innerArray => innerArray.slice());
+}
+
+function randomChance() {
+  const probability = Math.floor(Math.random() * 10);
+  return probability <= 2;
+}
+
+
 class GameOfLife extends React.Component {
   constructor(props) {
     super(props);
     this.boardRows = 20;
     this.boardColumns = 40;
-    this.gameSpeed = 100;
+    this.gameSpeed = 500;
+    this.emptyBoard = Array(this.boardRows).fill(Array(this.boardColumns).fill(false));
 
     this.state = {
       generation: 0,
-      board: Array(this.boardRows).fill(Array(this.boardColumns).fill(false))
+      board: this.emptyBoard
     };
   }
 
@@ -26,6 +37,35 @@ class GameOfLife extends React.Component {
     this.setState({
       board: boardCopy
     });
+  }
+
+  handleSeedRandomCells = () => {
+    let boardCopy = copyArray(this.state.board);
+    boardCopy = boardCopy.map(row => row.map(() => randomChance()));
+    this.setState({
+      board: boardCopy
+    });
+  }
+
+  handleStopGame = () => {
+    clearInterval(this.intervalId);
+    this.setState({
+      board: this.emptyBoard
+    });
+  }
+
+  handleStartGame = () => {
+    clearInterval(this.intervalId);
+    this.intervalId = setInterval(this.play, this.gameSpeed);
+  }
+
+  handlePauseGame = () => {
+    clearInterval(this.intervalId);
+  }
+
+  play = () => {
+    // let currentBoard = this.state.board;
+    // let futureBoard = copyArray(this.state.board);
   }
 
   render() {
@@ -39,7 +79,12 @@ class GameOfLife extends React.Component {
         <main className="main">
           <GameMenu>
             <h2 className="main__menu-title">Game Menu</h2>
-            <GameControls />
+            <GameControls
+              seedRandomCells={this.handleSeedRandomCells}
+              stopGame={this.handleStopGame}
+              startGame={this.handleStartGame}
+              pauseGame={this.handlePauseGame}
+            />
             <GameSettings />
           </GameMenu>
 
@@ -56,10 +101,6 @@ class GameOfLife extends React.Component {
       </Fragment>
     );
   }
-}
-
-function copyArray(array) {
-  return array.map(innerArray => innerArray.slice());
 }
 
 export default GameOfLife;
