@@ -11,7 +11,11 @@ function copyArray(array) {
   return array.map(innerArray => innerArray.slice());
 }
 
-function randomChance() {
+function randomChance(rowIndex, colIndex, row, col) {
+  if (rowIndex === 0 || colIndex === 0 || rowIndex === row - 1 || colIndex === col - 1) {
+    return false;
+  }
+
   const probability = Math.floor(Math.random() * 10);
   return probability <= 2;
 }
@@ -41,7 +45,7 @@ class GameOfLife extends React.Component {
 
   handleSeedRandomCells = () => {
     let boardCopy = copyArray(this.state.board);
-    boardCopy = boardCopy.map(row => row.map(() => randomChance()));
+    boardCopy = boardCopy.map((row, rowIndex) => row.map((col, colIndex) => randomChance(rowIndex, colIndex, this.boardRows, this.boardColumns)));
     this.setState({
       board: boardCopy
     });
@@ -93,6 +97,40 @@ class GameOfLife extends React.Component {
     });
   }
 
+  handleNormalSpeed = () => {
+    this.gameSpeed = 500;
+    clearInterval(this.intervalId);
+    this.intervalId = setInterval(this.play, this.gameSpeed);
+  }
+
+  handleFastSpeed = () => {
+    this.gameSpeed = 250;
+    clearInterval(this.intervalId);
+    this.intervalId = setInterval(this.play, this.gameSpeed);
+  }
+
+  handleNormalSize = () => {
+    this.boardRows = 20;
+    this.boardColumns = 40;
+    this.emptyBoard = Array(this.boardRows).fill(Array(this.boardColumns).fill(false));
+    clearInterval(this.intervalId);
+    this.setState({
+      generation: 0,
+      board: this.emptyBoard
+    });
+  }
+
+  handleSmallSize = () => {
+    this.boardRows = 10;
+    this.boardColumns = 20;
+    this.emptyBoard = Array(this.boardRows).fill(Array(this.boardColumns).fill(false));
+    clearInterval(this.intervalId);
+    this.setState({
+      generation: 0,
+      board: this.emptyBoard
+    });
+  }
+
   render() {
     return (
       <Fragment>
@@ -110,7 +148,12 @@ class GameOfLife extends React.Component {
               startGame={this.handleStartGame}
               pauseGame={this.handlePauseGame}
             />
-            <GameSettings />
+            <GameSettings
+              normalSpeed={this.handleNormalSpeed}
+              fastSpeed={this.handleFastSpeed}
+              normalSize={this.handleNormalSize}
+              smallSize={this.handleSmallSize}
+            />
           </GameMenu>
 
           <div className="main__trapezoid">

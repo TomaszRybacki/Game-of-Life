@@ -1,7 +1,4 @@
 .BoardCell {
-  border: 1px solid black;
-  margin-left: -1px;
-  margin-bottom: -1px;
   border-radius: 50%;
 
   max-width: 15px;
@@ -19,4 +16,9 @@
 
 .death {
   background-color: $gray;
+}
+
+.disabled {
+  pointer-events: none;
+  border-radius: 0;
 }
