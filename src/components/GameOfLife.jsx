@@ -50,6 +50,7 @@ class GameOfLife extends React.Component {
   handleStopGame = () => {
     clearInterval(this.intervalId);
     this.setState({
+      generation: 0,
       board: this.emptyBoard
     });
   }
@@ -64,8 +65,32 @@ class GameOfLife extends React.Component {
   }
 
   play = () => {
-    // let currentBoard = this.state.board;
-    // let futureBoard = copyArray(this.state.board);
+    const currentBoard = this.state.board;
+    const futureBoard = copyArray(this.state.board);
+
+    for (let i = 1; i < currentBoard.length - 1; i += 1) {
+      for (let j = 1; j < currentBoard[0].length - 1; j += 1) {
+        let liveNeighbours = 0;
+
+        if (currentBoard[i][j - 1]) liveNeighbours += 1;
+        if (currentBoard[i][j + 1]) liveNeighbours += 1;
+        if (currentBoard[i - 1][j]) liveNeighbours += 1;
+        if (currentBoard[i + 1][j]) liveNeighbours += 1;
+
+        if (currentBoard[i - 1][j - 1]) liveNeighbours += 1;
+        if (currentBoard[i - 1][j + 1]) liveNeighbours += 1;
+        if (currentBoard[i + 1][j - 1]) liveNeighbours += 1;
+        if (currentBoard[i + 1][j + 1]) liveNeighbours += 1;
+
+        if (liveNeighbours < 2 || liveNeighbours > 3) futureBoard[i][j] = false;
+        if (!currentBoard[i][j] && liveNeighbours === 3) futureBoard[i][j] = true;
+      }
+    }
+
+    this.setState({
+      generation: this.state.generation += 1,
+      board: futureBoard
+    });
   }
 
   render() {
