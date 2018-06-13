@@ -13,7 +13,7 @@ The universe of the Game of Life is an infinite, two-dimensional orthogonal grid
 
 ## Live preview
 
-[Link to github.io preview page]()
+[Link to github.io preview page](https://tomaszrybacki.github.io/Game-of-Life/)
 
 ## Free Code Camp challenge
 
