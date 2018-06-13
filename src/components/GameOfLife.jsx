@@ -24,15 +24,28 @@ function randomChance(rowIndex, colIndex, row, col) {
 class GameOfLife extends React.Component {
   constructor(props) {
     super(props);
-    this.boardRows = 20;
-    this.boardColumns = 40;
+    this.boardRows = 10;
+    this.boardColumns = 20;
     this.gameSpeed = 500;
     this.emptyBoard = Array(this.boardRows).fill(Array(this.boardColumns).fill(false));
 
     this.state = {
       generation: 0,
-      board: this.emptyBoard
+      board: this.emptyBoard,
+      isActive: false
     };
+  }
+
+  componentWillMount() {
+    if (window.innerWidth <= 420) {
+      this.setState({
+        isActive: false
+      });
+    } else {
+      this.setState({
+        isActive: true
+      });
+    }
   }
 
   handleCellClick = (row, column) => {
@@ -150,6 +163,7 @@ class GameOfLife extends React.Component {
             />
             <GameSettings
               normalSpeed={this.handleNormalSpeed}
+              isActive={this.state.isActive}
               fastSpeed={this.handleFastSpeed}
               normalSize={this.handleNormalSize}
               smallSize={this.handleSmallSize}

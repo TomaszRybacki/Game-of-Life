@@ -22,7 +22,7 @@ function GameSettings(props) {
       </div>
 
       <div className="GameSettings__buttons">
-        <button className="GameSettings__button" title="normal size" onClick={() => props.normalSize()}>
+        <button id="mobile" disabled={!props.isActive} className="GameSettings__button" title="normal size" onClick={() => props.normalSize()}>
           <BoardSizeIcon className="GameSettings__icon GameSettings__icon--blue" />
         </button>
 
@@ -38,7 +38,8 @@ GameSettings.propTypes = {
   normalSpeed: PropTypes.func.isRequired,
   fastSpeed: PropTypes.func.isRequired,
   normalSize: PropTypes.func.isRequired,
-  smallSize: PropTypes.func.isRequired
+  smallSize: PropTypes.func.isRequired,
+  isActive: PropTypes.bool.isRequired
 };
 
 export default GameSettings;

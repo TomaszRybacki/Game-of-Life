@@ -41,6 +41,15 @@
   &:hover, &:focus {
     transform: scale(1.2);
   }
+
+  &:disabled {
+    transition: none;
+    opacity: 0.6;
+
+    &:hover, &:focus {
+      transform: none;
+    }
+  }
 }
 
 .GameSettings__button--round {
